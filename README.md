@@ -13,6 +13,31 @@ When you're reading a study and see which hospital it came from, you need the ri
 - Installable to the home screen on iPhone and Android, and works offline after first load
 - Plain HTML, CSS and JavaScript. No framework and no build step.
 
+## Install it on your phone
+
+Open the app's web address in your phone's browser, then add it to your home screen so it opens like a regular app, full screen, with its own icon. You only need to do this once per phone.
+
+### iPhone (use Safari)
+
+1. Open the app's address in **Safari**. Other iPhone browsers may not show the home screen option.
+2. Tap the **Share** button, the square with an arrow pointing up. It is usually in the bottom toolbar. If you don't see it, tap the **three dots (...)** button at the bottom right to find it.
+3. Scroll down the list and tap **Add to Home Screen**. If you don't see it, scroll to the bottom and tap **Edit Actions** to add it.
+4. Leave the name as "Call List" (or rename it), keep **Open as Web App** switched on if it is shown, and tap **Add**.
+5. The icon now appears on your home screen. Open the app from there.
+
+### Android (use Chrome)
+
+1. Open the app's address in **Chrome**.
+2. Tap the **three dots** menu in the top right corner.
+3. Tap **Add to Home screen**, or **Install app** if you see that instead.
+4. Tap **Install** (or **Add**) and confirm. The icon appears on your home screen or in your app drawer.
+
+### After installing
+
+- The first time you open it, load it once with a signal. After that it works offline.
+- If you open the web address in a regular browser tab instead of the home screen icon, you will see the same app but with the browser bars around it.
+- Your on/off choices and added numbers are saved on that phone only. Installing on a second phone starts from the default list.
+
 ## Run it
 
 Open `index.html` through any static file server, for example:
