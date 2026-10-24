@@ -35,7 +35,7 @@
     s.innerHTML = svg; // static strings defined above, never user input
     return s;
   }
-  function telHref(num) { return 'tel:' + num.replace(/[^0-9+,]/g, ''); }
+  function telHref(num) { return 'tel:' + (hide ? '*67' : '') + num.replace(/[^0-9+,]/g, ''); }
   function disp(num) { return num.replace(',', ' ext '); }
 
   // ---------- state ----------
@@ -51,6 +51,10 @@
   }
   var sites = null;
   var recent = [];
+  var HKEY = 'radcall.hide';
+  var hide = true; // default: block caller ID by dialing *67 first
+  try { var hv = localStorage.getItem(HKEY); if (hv !== null) hide = hv === '1'; } catch (e) {}
+  function setHide(v) { hide = v; try { localStorage.setItem(HKEY, v ? '1' : '0'); } catch (e) {} }
   try {
     var st = JSON.parse(localStorage.getItem(KEY));
     if (st && st.version === D.version && Array.isArray(st.sites)) sites = st.sites;
@@ -72,6 +76,19 @@
 
   var app = document.getElementById('app');
   var ui = { edit: false, adding: false, q: '' };
+
+  function hideToggle(rerender) {
+    return el('button', {
+      class: 'hide' + (hide ? ' hide-on' : ''), type: 'button', 'aria-pressed': String(hide),
+      onclick: function () { setHide(!hide); rerender(); }
+    }, [
+      el('span', { class: 'hide-txt' }, [
+        el('b', { text: hide ? 'Your number is hidden' : 'Your number is visible' }),
+        el('span', { text: hide ? 'Calls dial *67 first to block caller ID' : 'Calls show your real caller ID' })
+      ]),
+      el('span', { class: 'sw' + (hide ? ' sw-on' : ''), 'aria-hidden': 'true' }, [el('span', { class: 'knob' })])
+    ]);
+  }
 
   // ---------- list screen ----------
   function siteRow(s) {
@@ -119,7 +136,8 @@
     app.appendChild(el('div', { class: 'top' }, [
       el('h1', { text: 'Call list' }),
       el('p', { class: 'sub', text: 'Pick the site from your PACS screen' }),
-      input
+      input,
+      hideToggle(renderList)
     ]));
     app.appendChild(res);
     fill();
@@ -209,7 +227,8 @@
         text: ui.edit
           ? 'Switch on the numbers you want on this screen. ' + shown + ' of ' + s.nums.length + ' shown.'
           : shown + (shown === 1 ? ' number' : ' numbers') + ' · tap to call'
-      })
+      }),
+      ui.edit ? null : hideToggle(function () { renderSite(s); })
     ]));
 
     var body = el('div', { class: 'body' });

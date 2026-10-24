@@ -87,5 +87,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .form .row button { flex: 1; min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--raised); font-weight: 600; }
 .form .row .go { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 
+.hide {
+  display: flex; align-items: center; gap: 14px; width: 100%; min-height: 56px; margin-top: 12px; padding: 8px 14px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; text-align: left;
+}
+.hide-txt { flex: 1; min-width: 0; display: block; }
+.hide-txt b { display: block; font-size: 15px; font-weight: 600; }
+.hide-txt span { display: block; font-size: 13px; color: var(--muted); }
+.hide-on .hide-txt b { color: var(--accent); }
+
 .empty { padding: 48px 16px; text-align: center; color: var(--muted); }
 .foot { margin: 24px 16px 0; font-size: 13px; line-height: 1.5; color: var(--muted); }

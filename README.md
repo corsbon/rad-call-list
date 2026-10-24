@@ -9,6 +9,7 @@ When you're reading a study and see which hospital it came from, you need the ri
 - Landing page with every site, searchable by name or code, plus your most recent sites on top
 - Per-site screen split into **Talk to the tech** and **Talk to a provider**
 - Edit mode: switch numbers on or off per site, add your own, reset to defaults
+- "Your number is hidden" switch (on by default): dials `*67` first so your caller ID is blocked on US carriers. Turn it off from the same switch if a line refuses blocked calls.
 - Your choices are saved on your device (no account, no server, no data leaves the phone)
 - Installable to the home screen on iPhone and Android, and works offline after first load
 - Plain HTML, CSS and JavaScript. No framework and no build step.
